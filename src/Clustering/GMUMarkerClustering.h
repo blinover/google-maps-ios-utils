@@ -16,10 +16,11 @@
 #import "GMUCluster.h"
 #import "GMUClusterItem.h"
 #import "GMUClusterManager.h"
-#import "GMUClusterIconGenerator.h"
+#import "GMUDefaultClusterIconGenerator.h"
 #import "GMUDefaultClusterRenderer.h"
 #import "GMUGridBasedClusterAlgorithm.h"
 #import "GMUNonHierarchicalDistanceBasedAlgorithm.h"
 #import "GMUStaticCluster.h"
 
+#import "GMUHeatmapTileLayer.h"
 #import "GQTPointQuadTree.h"

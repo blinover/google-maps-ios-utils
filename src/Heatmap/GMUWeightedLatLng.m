@@ -18,6 +18,7 @@
 #endif
 
 #import "GMUWeightedLatLng.h"
+
 #import <GoogleMaps/GoogleMaps.h>
 
 @implementation GMUWeightedLatLng {

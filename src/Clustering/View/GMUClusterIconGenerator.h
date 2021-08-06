@@ -15,14 +15,15 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "GMUCluster.h"
 
 /**
  * Defines a contract for cluster icon generation.
  */
 @protocol GMUClusterIconGenerator<NSObject>
 
-- (UIView *)viewForCluster:(id<GMUCluster>)cluster;
-- (UIView *)viewForItem:(id<GMUClusterItem>)item;
+/**
+ * Generates an icon with the given size.
+ */
+- (UIImage *)iconForSize:(NSUInteger)size;
 
 @end

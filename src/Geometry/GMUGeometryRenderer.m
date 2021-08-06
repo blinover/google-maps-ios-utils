@@ -68,7 +68,7 @@ static NSString *const kStyleMapDefaultState = @"normal";
 - (instancetype)initWithMap:(GMSMapView *)map
                  geometries:(NSArray<id<GMUGeometryContainer>> *)geometries
                      styles:(NSArray<GMUStyle *> *)styles {
-    return [self initWithMap:map geometries:geometries styles:styles styleMaps:nil];
+    return [self initWithMap:map geometries:geometries styles:nil styleMaps:nil];
 }
 
 - (instancetype)initWithMap:(GMSMapView *)map
@@ -135,15 +135,15 @@ static NSString *const kStyleMapDefaultState = @"normal";
 }
 
 - (GMUStyle *)getStyleFromStyleMaps:(NSString *)styleUrl {
-  GMUStyleMap *styleMap = [_styleMaps objectForKey:styleUrl];
-  if (styleMap) {
-      for (GMUPair *pair in styleMap.pairs) {
-          if ([pair.key isEqual:kStyleMapDefaultState]) {
-              return [_styles objectForKey:pair.styleUrl];
-          }
-      }
-  }
-  return nil;
+    GMUStyleMap *styleMap = [_styleMaps objectForKey:styleUrl];
+    if (styleMap) {
+        for (GMUPair *pair in styleMap.pairs) {
+            if ([pair.key isEqual:kStyleMapDefaultState]) {
+                return [_styles objectForKey:pair.styleUrl];
+            }
+        }
+    }
+    return nil;
 }
 
 - (void)renderGeometryContainers:(NSArray<id<GMUGeometryContainer>> *)containers {
@@ -187,7 +187,6 @@ static NSString *const kStyleMapDefaultState = @"normal";
               style:(GMUStyle *)style {
   CLLocationCoordinate2D coordinate = point.coordinate;
   GMSMarker *marker = [GMSMarker markerWithPosition:coordinate];
-  marker.tappable = true;
   if ([container isKindOfClass:[GMUPlacemark class]]) {
     GMUPlacemark *placemark = container;
     marker.title = style.title ?: placemark.title;
@@ -238,7 +237,6 @@ static NSString *const kStyleMapDefaultState = @"normal";
     GMUPlacemark *placemark = container;
     line.title = placemark.title;
   }
-  line.tappable = true;
   line.map = _map;
   [_mapOverlays addObject:line];
 }
@@ -274,7 +272,6 @@ static NSString *const kStyleMapDefaultState = @"normal";
     GMUPlacemark *placemark = container;
     poly.title = placemark.title;
   }
-  poly.tappable = true;
   poly.map = _map;
   [_mapOverlays addObject:poly];
 }
@@ -300,7 +297,6 @@ static NSString *const kStyleMapDefaultState = @"normal";
                                                                               coordinate:center];
   GMSCoordinateBounds *bounds = [northEastBounds includingBounds:southWestBounds];
   GMSGroundOverlay *groundOverlay = [GMSGroundOverlay groundOverlayWithBounds:bounds icon:nil];
-  groundOverlay.tappable = true;
   groundOverlay.zIndex = overlay.zIndex;
   groundOverlay.bearing = overlay.rotation;
   __weak GMSGroundOverlay *weakGroundOverlay = groundOverlay;

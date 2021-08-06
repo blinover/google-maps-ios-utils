@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+#import <Foundation/Foundation.h>
+
 #import "GMUClusterRenderer.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -73,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
  * Creates a new cluster renderer with a given map view and icon generator.
  *
  * @param mapView The map view to use.
- * @param iconGenerator The icon generator to use. Can be subclassed if required.
+ * @param icongeneration The icon generator to use. Can be subclassed if required.
  */
 - (instancetype)initWithMapView:(GMSMapView *)mapView
            clusterIconGenerator:(id<GMUClusterIconGenerator>)iconGenerator;

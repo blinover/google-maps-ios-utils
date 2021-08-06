@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+#import <Foundation/Foundation.h>
+
 #import <GoogleMaps/GoogleMaps.h>
 
 #import "GMUClusterAlgorithm.h"

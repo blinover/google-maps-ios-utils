@@ -25,14 +25,14 @@
 #import "GMUWrappingDictionaryKey.h"
 
 // Clusters smaller than this threshold will be expanded.
-static const NSUInteger kGMUMinClusterSize = 2;
+static const NSUInteger kGMUMinClusterSize = 4;
 
 // At zooms above this level, clusters will be expanded.
 // This is to prevent cases where items are so close to each other than they are always grouped.
 static const float kGMUMaxClusterZoom = 20;
 
 // Animation duration for marker splitting/merging effects.
-static const double kGMUAnimationDuration = 0.2;  // seconds.
+static const double kGMUAnimationDuration = 0.5;  // seconds.
 
 @implementation GMUDefaultClusterRenderer {
   // Map view to render clusters on.
@@ -271,13 +271,12 @@ static const double kGMUAnimationDuration = 0.2;  // seconds.
       animated = fromCluster != nil;
       fromPosition = fromCluster.position;
     }
-      
-    UIView *iconView = [_clusterIconGenerator viewForCluster:cluster];
 
+    UIImage *icon = [_clusterIconGenerator iconForSize:cluster.count];
     GMSMarker *marker = [self markerWithPosition:cluster.position
                                             from:fromPosition
                                         userData:cluster
-                                     clusterView:iconView
+                                     clusterIcon:icon
                                         animated:animated];
     [_markers addObject:marker];
   } else {
@@ -290,13 +289,11 @@ static const double kGMUAnimationDuration = 0.2;  // seconds.
         shouldAnimate = fromCluster != nil;
         fromPosition = fromCluster.position;
       }
-        
-      UIView *iconView = [_clusterIconGenerator viewForItem:item];
 
       GMSMarker *marker = [self markerWithPosition:item.position
                                               from:fromPosition
                                           userData:item
-                                       clusterView:iconView
+                                       clusterIcon:nil
                                           animated:shouldAnimate];
       [_markers addObject:marker];
       [_renderedClusterItems addObject:item];
@@ -318,14 +315,15 @@ static const double kGMUAnimationDuration = 0.2;  // seconds.
 - (GMSMarker *)markerWithPosition:(CLLocationCoordinate2D)position
                              from:(CLLocationCoordinate2D)from
                          userData:(id)userData
-                      clusterView:(UIView *)clusterView
+                      clusterIcon:(UIImage *)clusterIcon
                          animated:(BOOL)animated {
   GMSMarker *marker = [self markerForObject:userData];
   CLLocationCoordinate2D initialPosition = animated ? from : position;
   marker.position = initialPosition;
   marker.userData = userData;
-  if (clusterView != nil) {
-    marker.iconView = clusterView;
+  if (clusterIcon != nil) {
+    marker.icon = clusterIcon;
+    marker.groundAnchor = CGPointMake(0.5, 0.5);
   }
   marker.zIndex = _zIndex;
 

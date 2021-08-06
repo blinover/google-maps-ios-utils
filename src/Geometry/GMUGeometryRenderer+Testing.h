@@ -19,7 +19,5 @@
 @interface GMUGeometryRenderer (Testing)
 
 - (NSArray<GMSOverlay *> *)mapOverlays;
-+ (UIImage *)imageFromPath:(NSString *)path;
-- (GMUStyle *)getStyleFromStyleMaps:(NSString *)styleUrl;
 
 @end
