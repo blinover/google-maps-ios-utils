@@ -14,7 +14,6 @@
  */
 
 #import <CoreLocation/CoreLocation.h>
-#import <Foundation/Foundation.h>
 
 #import "GMUClusterItem.h"
 

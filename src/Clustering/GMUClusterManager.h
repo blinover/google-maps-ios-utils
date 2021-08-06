@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
-
 #import <GoogleMaps/GoogleMaps.h>
 
 #import "GMUClusterAlgorithm.h"
@@ -83,11 +81,6 @@ NS_ASSUME_NONNULL_BEGIN
  * To set it use the setDelegate:mapDelegate: method.
  */
 @property(nonatomic, readonly, weak, nullable) id<GMSMapViewDelegate> mapDelegate;
-
-/**
- * Sets a |mapDelegate| to listen to forwarded map events.
- */
-- (void)setMapDelegate:(id<GMSMapViewDelegate> _Nullable)mapDelegate;
 
 /**
  * Sets GMUClusterManagerDelegate |delegate| and optionally

@@ -1,4 +1,4 @@
-/* Copyright (c) 2020 Google Inc.
+/* Copyright (c) 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,8 +18,7 @@
 /* Extensions for testing purposes only. */
 @interface GMUDefaultClusterRenderer (Testing)
 
-- (NSArray<id<GMUCluster>> *)visibleClustersFromClusters:(NSArray<id<GMUCluster>> *)clusters;
-
-- (void)clearMarkersAnimated:(NSArray<GMSMarker *> *)markers;
+// Returns currently active markers.
+- (NSArray<GMSMarker *> *)markers;
 
 @end
